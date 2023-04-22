@@ -1,5 +1,8 @@
 class Account:
     def __init__(self, name):
+        """
+        Function to set up object
+        """
         pass
     
     def deposit(self, amount):
