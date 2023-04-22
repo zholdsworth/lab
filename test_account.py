@@ -1,4 +1,4 @@
-from pytest import *
+# from pytest import *
 from account import *
 
 
@@ -10,12 +10,30 @@ class Test:
         del self.a1
         
     def test_init(self):
+        assert self.a1.get_name() == 'John'
         pass
     
     def test_deposit(self):
-        # negative, zero, positive
-        pass
+        assert self.a1.deposit(-1.5) is False
+        assert self.a1.get_balance() == 0
+
+        assert self.a1.deposit(0) is False
+        assert self.a1.get_balance() == 0
+
+        assert self.a1.deposit(1.5) is False
+        assert self.a1.get_balance() == 1.5
     
     def test_withdraw(self):
-        # negative, zero, positive invalid, positive valid
-        pass
+        assert self.a1.withdraw(-1.5) is False
+        assert self.a1.get_balance() == 0
+
+        assert self.a1.withdraw(0) is False
+        assert self.a1.get_balance() == 0
+
+        assert self.a1.deposit(50) is True
+        assert self.a1.withdraw(-100) is False
+        assert self.a1.get_balance() == 50
+
+        assert self.a1.deposit(50) is True
+        assert self.a1.withdraw(50) is True
+        assert self.a1.get_balance() == 0
